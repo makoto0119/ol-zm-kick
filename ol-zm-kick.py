@@ -28,7 +28,7 @@ today_date = datetime.date.today() # 今日だけ
 now_time = datetime.datetime.now() # 今の時間
 '''
 today_date = datetime.date.fromisoformat('2022-06-20') # test 
-now_time = datetime.datetime.fromisoformat('2022-06-17 18:00:00') # test
+now_time = datetime.datetime.fromisoformat('2022-07-28 16:05:00') # test
 #'''
 scan_start_time = now_time + datetime.timedelta(hours=2) # 今の時間 + 2H で開始する予定
 scan_start = scan_start_time.strftime('%H:%M:%S') #
@@ -109,8 +109,13 @@ now_time = now_time.strftime('%H:%M:%S')  #実時間
 sleep_time = int((str2time(start_time) - str2time(now_time)).total_seconds() - 40) #分と秒で 40秒前に起動
 if sleep_time > 0 : #残りが40秒以上の場合、タイマをかける
     print (f'起動まで { int(sleep_time / 60) } 分 待ちます' )
-    subprocess.Popen(r'C:\Program Files (x86)\Hourglass\hourglass.EXE -e on -r off --title <' + select_item.subject.replace(' ', '') + '> ' +str(sleep_time) + 's')
+    subprocess.Popen(r'C:\Program Files (x86)\Hourglass\hourglass.EXE -e on -r off --theme yellow --title <' + select_item.subject.replace(' ', '') + '> ' +str(sleep_time) + 's')
     # https://chris.dziemborowicz.com/apps/hourglass/#command-line-arguments
     time.sleep(sleep_time)
  
 webbrowser.open(kick_url)
+
+# 会議開始の待ち合わせ
+time.sleep(15)
+# 会議時間の状況表示タイマー起動
+subprocess.Popen(r'C:\Program Files (x86)\Hourglass\hourglass.EXE -e on -r off --theme green --title <' + select_item.subject.replace(' ', '') + '> ' +str(today_date)+' '+str(end_time))
