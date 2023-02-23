@@ -49,6 +49,7 @@ for item in calendar:
 # 抜き出した予定の詳細を表示
 for select_item in select_items:
     if ( select_item.body == '' or select_item.body == ' ' or 
+         select_item.subject == '' or select_item.subject == ' ' or 
          select_item.subject.startswith('Canceled:') or
          select_item.subject.startswith('キャンセル済み:') ) : 
         print("対象外会議あり：", select_item.subject)
